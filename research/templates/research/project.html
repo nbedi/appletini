@@ -18,11 +18,15 @@
     <div class="post-info">
         <div class="authors">by {{ project.get_pretty_authors }}</div>
         <div class="published">{{ project.published }}</div>
+        <hr>
+        {%if project.link%}<div class="link"><a href="{{project.link}}">{{project.link}}</a></div>{%endif%}
+        {%if project.github%}<div class="github"><a href="{{project.github}}">GitHub Repo</a></div>{%endif%}
     </div>
 
     <div class="post-body">
         {{ project.description|markdown_safe|image|safe }}
     </div>
+    
 
 </article>
 
