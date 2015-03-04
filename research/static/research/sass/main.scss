@@ -91,10 +91,12 @@ header {
             color: black;
             font-size: 3.5em;
         }
+    }
 
-        .tagline {
-            color: gray;
-        }
+    .tagline {
+        float: left;
+        margin-top: 4rem;
+        margin-left: 1rem;
     }
 }
 
@@ -149,6 +151,14 @@ article {
     .published {
         font-size: .7em;
         color: gray;
+    }
+
+    .github {
+        margin-top: 1em;
+    }
+
+    .link {
+        margin-top: 1em;
     }
 
     .post-body {
@@ -220,10 +230,14 @@ ul.posts {
 ul.projects {
     list-style-type: none;
     padding: 0;
+    display:inline-block;
+
 
     li {
         float: left;
         margin: 0.75em 0.5em;
+        width: 23%;
+        overflow: hidden;
     }
 
     a {

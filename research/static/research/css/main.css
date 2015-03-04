@@ -63,8 +63,10 @@ header {
       font-weight: normal;
       color: black;
       font-size: 3.5em; }
-    header #banner .tagline {
-      color: gray; }
+  header .tagline {
+    float: left;
+    margin-top: 4rem;
+    margin-left: 1rem; }
 
 article {
   margin: 2em 0; }
@@ -96,6 +98,10 @@ article {
   article .published {
     font-size: .7em;
     color: gray; }
+  article .github {
+    margin-top: 1em; }
+  article .link {
+    margin-top: 1em; }
   article .post-body p {
     max-width: 640px;
     font-size: 1.3em;
@@ -142,10 +148,13 @@ ul.posts {
 
 ul.projects {
   list-style-type: none;
-  padding: 0; }
+  padding: 0;
+  display: inline-block; }
   ul.projects li {
     float: left;
-    margin: 0.75em 0.5em; }
+    margin: 0.75em 0.5em;
+    width: 23%;
+    overflow: hidden; }
   ul.projects a {
     color: black;
     border: 0;
