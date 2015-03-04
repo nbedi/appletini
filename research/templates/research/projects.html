@@ -15,7 +15,7 @@
 
     <li class="project">
         <a href="{% url 'research_project' project.slug %}">
-            {% thumbnail project.featured_image "220" crop="center" as im %}
+            {% thumbnail project.featured_image "300x150" crop="center" as im %}
             <img class="featured-image" src="{{ im.url }}">
             {% endthumbnail %}
 
@@ -32,7 +32,7 @@
 
     <li class="project">
         <a href="{% url 'research_project' project.slug %}">
-            {% thumbnail project.featured_image "220" crop="center" as im %}
+            {% thumbnail project.featured_image "300x150" crop="center" as im %}
             <img class="featured-image" src="{{ im.url }}">
             {% endthumbnail %}
 
