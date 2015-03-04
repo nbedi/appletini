@@ -20,7 +20,7 @@ blockquote {
   padding: 1em 2em; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Merriweather", serif; }
+  font-family: "Roboto Slab", serif; }
 
 h1 {
   font-size: 3em;
@@ -72,7 +72,8 @@ article {
   margin: 2em 0; }
   article h1 {
     font-size: 3em;
-    margin: 0.3em 0 0.6em; }
+    margin: 0.3em 0 0.6em;
+    font-weight: normal; }
   article h2, article h3, article h4, article h5, article h6 {
     margin: 1.2em 0 0.6em; }
   article h2 {
@@ -112,7 +113,7 @@ article {
     font-size: 75px;
     line-height: 70px;
     padding: 4px 8px 0 3px;
-    font-family: "Merriweather", serif; }
+    font-family: "Roboto Slab", serif; }
 
 main {
   max-width: 960px;
@@ -137,7 +138,8 @@ ul.posts {
   ul.posts h2 {
     font-size: 3em;
     margin: 0.3em 0;
-    line-height: 1.2; }
+    line-height: 1.2;
+    font-weight: normal; }
   ul.posts .featured-image {
     display: block;
     margin-bottom: 0.5em;

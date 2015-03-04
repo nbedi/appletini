@@ -1,5 +1,5 @@
 $BODY_FONT: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$HEADLINE_FONT: 'Merriweather', serif;
+$HEADLINE_FONT: 'Roboto Slab', serif;
 $DB_BLUE: #0080c6;
 $DARK_BLUE: $DB_BLUE - #444;
 
@@ -106,6 +106,7 @@ article {
     h1 {
         font-size: 3em;
         margin: 0.3em 0 0.6em;
+        font-weight: normal;
     }
 
     h2, h3, h4, h5, h6 {
@@ -213,6 +214,7 @@ ul.posts {
         font-size: 3em;
         margin: 0.3em 0;
         line-height: 1.2;
+        font-weight: normal;
     }
 
     .featured-image {
