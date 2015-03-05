@@ -18,6 +18,9 @@
     <div class="post-info">
         <div class="authors">by {{ post.get_pretty_authors }}</div>
         <div class="published">{{ post.published }}</div>
+        {%if post.project%}
+        <a href="/research/project/{{post.project.slug}}"><button>{{post.project.name}}</button></a>
+        {%endif%}
     </div>
 
     <div class="post-body">
