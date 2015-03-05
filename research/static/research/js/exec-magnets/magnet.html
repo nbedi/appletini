@@ -10,21 +10,23 @@
 	<!-- </div> -->
 	<!-- <div class="small-4 columns"> -->
 		<label>Second field</label>
-		<input type="text" ng-model="selectedRight"/>
-<!-- 		<select type="hidden" style="text-align:left" class="js-example-basic-multiple">
-			<option >A</option>
-		</select>	 -->
+		<input type="text" ng-model="selectedRight" list="rightSuggest" autocomplete="on"/>
+		<datalist ng-model="suggestions" id="rightSuggest">
+            <option data-ng-repeat="suggestion in suggestions" value="{{suggestion}}"></option>
+        </datalist>
 	<!-- </div> -->
 </div>
 <!-- <button>Add statement</button> -->
+
 <div class="row" >
+	<label ng-show="invalidInd" style="color:red;display:block;">Error: {{invalidInput}}</label>
 	<!-- <div class="small-4 columns"> -->
 	<!-- </div> -->
 	<!-- <div class="small-4 columns"> -->
-	<label >Right-click to remove individual magnets</label>
-	<label ng-show="invalidInd" style="color:red;">{{invalidInput}}</label>
+	<!-- <label >Right-click to remove individual magnets</label> -->
 	<button class="button success" ng-click="submit()">Create Magnet</button>
-	<!-- <button class="button alert" ng-click="clearMagnets()">Clear Magnets</button>-->
+	 <button class="button alert" ng-click="clearMagnets()">Clear Magnets</button>
+
 	<!-- </div> -->
 	<!-- <div class="small-4 columns"> -->
 	<!-- </div> -->

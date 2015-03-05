@@ -47,9 +47,9 @@ app.directive('magnet', function(){
 				// if(getType(eval("scope.data[0]."+val))=="date"){
 				// 	return "date";
 				// }else 
-				if(getType(eval("scope.data[0]."+val))=="number") {
+				if(getType(scope.data[0][val])=="number") {
 					return "number";
-				}else if(getType(eval("scope.data[0]."+val))=="string") {
+				}else if(getType(scope.data[0][val])=="string") {
 					return "string";
 				}
 			}
@@ -77,7 +77,7 @@ app.directive('magnet', function(){
 
 		function isTrue(data,left,comp,right) {
 			if (data) {
-				var leftData = getData(eval("data."+left));
+				var leftData = getData(data[left]);
 				var rightData = getData(right);
 				var test = operate[comp.op](leftData,rightData);
 				if (!(test)) {
@@ -114,8 +114,8 @@ app.directive('magnet', function(){
 
   		el = el[0];
   		var width = Math.min(window.innerWidth-150,960);
-  		var height = width*.4;
-  		var radius = 5;
+  		var height = width*.5;
+  		var radius = 4;
 
   		var fill = d3.scale.category10();
 
@@ -208,7 +208,7 @@ app.directive('magnet', function(){
 		function startData() {
 			node = node.data(force.nodes(), function(d) { return d.id;});
 			node.enter().append("circle")
-			  				.attr("r", radius/2)
+			  				.attr("r", radius)
 			  				.attr("class", 'point')
 			  				.on('mouseover', tipPoint.show)
 			  				.on('mouseout', tipPoint.hide);
@@ -218,7 +218,6 @@ app.directive('magnet', function(){
 			scope.$watch('initialmagnets', function(initial){
 				var colors = ["green", "orange", "blue"];
 		    	if(initial){
-		    		console.log(scope.allowcreate);
 		    		initial = ['Sex','BasePay'];
 		    		for(i=0;i<(initial.length);i++) {
 		    			if (initial[i] in scope.data[0]) {
@@ -269,7 +268,7 @@ app.directive('magnet', function(){
 		function startMagnet() {
 			node = node.data(force.nodes(), function(d) { return d.id;});
 			node.enter().append("circle")
-			  				.attr("r", radius/4)
+			  				.attr("r", radius)
 			  				.attr("class", 'magnet')
 			  				.on('mouseover', tipPoint.show)
 			  				.on('mouseout', tipPoint.hide);
@@ -287,7 +286,6 @@ app.directive('magnet', function(){
 	    					});
 
 		scope.submit = function(){
-			var svg = d3.select("svg");
 			//refactor to use force layout!
 	    	var newData = [{left:scope.selectedLeft, comparator:scope.selectedComp, right:scope.selectedRight}];
 	    	if (errorCheck(scope.selectedLeft, scope.selectedComp, scope.selectedRight)) {
@@ -304,8 +302,8 @@ app.directive('magnet', function(){
 	      							.on('mouseout', tipMagnet.hide)
 	      							.on('contextmenu', function(data, index) {
 	      													this.remove();
-	      													tick();
 														    d3.event.preventDefault();
+														    force.start();
 														});										
 				force.start();
 				scope.selectedRight = "";
@@ -313,7 +311,6 @@ app.directive('magnet', function(){
 	    }
 
 	    customsubmit = function(cleft,ccomp,cright,cx,cy,color){
-	    	var svg = d3.select("svg");
 			//refactor to use force layout!
 	    	var newData = [{left:cleft, comparator:ccomp, right:cright}];
 	    	if (errorCheck(cleft, ccomp, cright)) {
@@ -340,6 +337,7 @@ app.directive('magnet', function(){
 	    scope.clearMagnets = function(){
 	    	magnets = svg.selectAll(".magnet");
 	    	magnets.remove();
+	    	force.start();
 	    }
 
 	    scope.$watch('selectedLeft', function(left){
@@ -355,29 +353,49 @@ app.directive('magnet', function(){
 	  				// scope.rights = strRights;
 	  			}
 	  			scope.selectedComp = scope.comps[0];
+	  			scope.suggestions = [];
+	  			i=0;
+	  			for(j=0;j<scope.data.length;j++) {
+	  				if (scope.suggestions.indexOf(scope.data[j][scope.selectedLeft]) < 0) {
+	  					scope.suggestions[i]=scope.data[j][scope.selectedLeft];
+	  					i++;
+	  				}
+	  			}
 	  			// scope.selectedRight = scope.rights[0];
 	  		}
 	    })
 
   		scope.$watch('data', function(data){
 	  		if(data){
-	  			delete data[0].Photo;
-	  			delete data[0].PhotoURL;
-	  			delete data[0].System;
-	  			delete data[0].Partial_Year;
 	  			scope.invalidInd = false;
 	  			scope.lefts = Object.keys(data[0]);
+
+	  			var index = scope.lefts.indexOf("Photo");
+				scope.lefts.splice(index, 1);
+				index = scope.lefts.indexOf("PhotoURL");
+				scope.lefts.splice(index, 1);
+				index = scope.lefts.indexOf("System");
+				scope.lefts.splice(index, 1);
+				index = scope.lefts.indexOf("Partial_Year");
+				scope.lefts.splice(index, 1);
+				index = scope.lefts.indexOf("StartTerm");
+				scope.lefts.splice(index, 1);
+
 	  			scope.selectedLeft = scope.lefts[0];
 	  			scope.invalidInput = "";
-	  			if(getType(eval("data[0]."+scope.selectedLeft))=="date"){
+	  			if(getType(data[0][scope.selectedLeft])=="date"){
 	  				scope.comps = dateComps;
 	  				// scope.rights = dateRights;
-	  			}else if(getType(eval("data[0]."+scope.selectedLeft))=="number") {
+	  			}else if(getType(data[0][scope.selectedLeft])=="number") {
 	  				scope.comps = numComps;
 	  				// scope.rights = numRights;
-	  			}else if(getType(eval("data[0]."+scope.selectedLeft))=="string") {
+	  			}else if(getType(data[0][scope.selectedLeft])=="string") {
 	  				scope.comps = strComps;
 	  				// scope.rights = strRights;
+	  			}
+	  			scope.suggestions = [];
+	  			for (i=0;i<5;i++) {
+	  				scope.suggestions[i]=data[i][scope.selectedLeft];
 	  			}
 	  			scope.selectedComp = scope.comps[0];
 	  			// scope.selectedRight = scope.rights[0];
