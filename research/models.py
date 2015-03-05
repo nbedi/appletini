@@ -37,7 +37,7 @@ class Post(CreatedContent):
 class Project(CreatedContent):
     name = models.CharField(max_length=64)
     slug = models.SlugField(max_length=64)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     published = models.DateTimeField(auto_now_add=True)
     featured_image = models.ImageField(upload_to='research/project/'
                                        'featured_image')
