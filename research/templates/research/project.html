@@ -18,12 +18,19 @@
     <div class="post-info">
         <div class="authors">by {{ project.get_pretty_authors }}</div>
         <div class="published">{{ project.published }}</div>
-        <hr>
-        {%if project.link%}<div class="link"><a href="{{project.link}}">{{project.link}}</a></div>{%endif%}
-        {%if project.github%}<div class="github"><a href="{{project.github}}">GitHub Repo</a></div>{%endif%}
     </div>
 
     <div class="post-body">
+        {%if project.link%}
+        <div class="link">Project link: 
+            <a href="{{project.link}}">{{project.link}}</a>
+        </div>
+        {%endif%}
+        {%if project.github%}
+        <div class="github">GitHub Repo: 
+            <a href="{{project.github}}">{{project.github}}</a>
+        </div>
+        {%endif%}
         {{ project.description|markdown_safe|image|safe }}
     </div>
     
