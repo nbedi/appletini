@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="magnet" >
+  <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Data magnets</title>
+
+      <!-- CSS -->
+      <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.7/css/foundation.min.css" rel="stylesheet" type="text/css" />
+      <!-- <link href="/select2.css" rel="stylesheet" type="text/css"/> -->
+      <link href="main.css" rel="stylesheet" type="text/css" />
+          
+      <!-- JavaScript -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
+      <!--<script src="/select2.js"></script>-->
+      <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+      <script type="text/javascript" src="index.js"></script>
+      <script src="app.js"></script>
+
+      <link rel="icon" href="favicon.ico" type="image/x-icon">
+  </head>
+
+  <body class="container" ng-controller="MagnetController as magnet">
+      <div class="dataDesc">
+        <div class="row">
+          <div class="large-4 columns" style="text-align:right;">
+            <h2>Data magnets</h2>
+          <h5>Visually sort data with user generated 'magnets'</h5>
+          </div>
+          <div class="large-8 columns">
+          <h5>Example dataset: {{myDataset.name}}</h5>
+          <p>(Data from {{myDataset.from}})</br></br>
+          {{myDataset.desc}}</p>
+         	<p><a href={{myDataset.link}}>{{myDataset.link}}</a></p>
+         </div>
+       </div>
+      </div>
+     	</br>
+      <div>
+    	<magnet data="magnet.data" allowcreate="true"/>
+      </div>
+<!--       <div>
+      <magnet data="magnet.data" allowcreate="false"/>
+      </div> -->
+  </body>
+
+  <footer><a href="http://neilbedi.com">Visualization by Neil Bedi</a></footer>
+</html>
