@@ -17,7 +17,7 @@
     <h1>{{ project.name }}</h1>
     <div class="post-info">
         <div class="authors">by {{ project.get_pretty_authors }}</div>
-        <div class="published">{{ project.published }}</div>
+        <div class="published">{{ project.published|date:'d M Y' }}</div>
     </div>
 
     <div class="post-body">
