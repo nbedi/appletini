@@ -143,6 +143,7 @@ article {
         float: right;
         margin: -1em 0 0.5em 1em;
         text-align: right;
+        max-width: 14rem;
     }
 
     .authors {
@@ -287,6 +288,15 @@ footer {
 .authors {
     border-top: 2px solid $DARK_BLUE;
     padding-top: 0.2em;
+}
+
+button {
+    font-size: 1rem;
+    background-color: rgb(0,128,198);
+    color: white;
+    margin: 0.75rem 0;
+    padding: 0.75rem;
+    border: none;
 }
 
 @import 'responsive';

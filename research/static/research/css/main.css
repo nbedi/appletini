@@ -93,7 +93,8 @@ article {
   article .post-info {
     float: right;
     margin: -1em 0 0.5em 1em;
-    text-align: right; }
+    text-align: right;
+    max-width: 14rem; }
   article .authors {
     margin-bottom: 0.25em; }
   article .published {
@@ -188,6 +189,14 @@ footer {
 .authors {
   border-top: 2px solid #003c82;
   padding-top: 0.2em; }
+
+button {
+  font-size: 1rem;
+  background-color: #0080c6;
+  color: white;
+  margin: 0.75rem 0;
+  padding: 0.75rem;
+  border: none; }
 
 @media (max-width: 640px) {
   header nav {
