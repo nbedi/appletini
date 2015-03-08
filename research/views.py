@@ -1,4 +1,4 @@
-from itertools import chain
+from datetime import datetime
 
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
@@ -14,8 +14,7 @@ class FrontView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(FrontView, self).get_context_data(**kwargs)
-        context['projects'] = Project.objects.all()[:10]
-        context['posts'] = Post.objects.all()[:10]
+        context['posts'] = Post.objects.filter(published__lt=datetime.now())[:10]
         return context
 
 
